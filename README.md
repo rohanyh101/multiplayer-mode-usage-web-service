@@ -85,6 +85,8 @@ The prebuilt Docker image for this project is available on Docker Hub: https://h
 - Redis: `redis://redis:6379`
 - gRPC Service: Accessible via port `50051`.
 
+## Test Commands
+- All the gRPC Test Commands are in the `grpc.txt` file of the repo just copy and paste see the responses accordingly, [here](grpc.txt)
 
 ### Docker Compose Services
 - **multiplayer**: Runs the gRPC service. Built using a multi-stage Dockerfile.
