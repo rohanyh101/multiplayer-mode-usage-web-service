@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package multiplayer;
+
+option go_package = "./proto";
+
+service MultiplayerService {
+  // Method to get the top multiplayer modes for a given area code
+  rpc GetTopMode (TopModeRequest) returns (TopModeResponse);
+
+  // Method to increase the usage (number of players) of a specific mode
+  rpc UpdateSingleMode (UpdateSingleModeRequest) returns (UpdateSingleModeResponse);
+  
+  // Custom health check method to verify the server is running
+  rpc HealthCheck (EmptyRequest) returns (HealthCheckResponse);
+
+  // Method to randomize game modes for a specific area code
+  rpc RandomizeSingleAreaCode (RandomizeSingleAreaCodeRequest) returns (RandomizeSingleAreaCodeResponse);
+}
+
+message EmptyRequest {}
+
+message HealthCheckResponse {
+  string status = 1;
+}
+
+message Mode {
+  string name = 2;      // Name of the multiplayer mode
+  int32 users = 3;      // Number of users playing the mode
+}
+
+message TopModeRequest {
+  string area_code = 1; // Area code for which top modes are requested
+}
+
+message TopModeResponse {
+  Mode mode = 1; // Top multiplayer mode for the area code
+}
+
+message UpdateSingleModeRequest {
+  string area_code = 1;    // Area code for the mode
+  string mode_name = 2;    // Name of the mode to update
+  int32 users = 3;    // Number of users to add to the mode
+}
+
+message UpdateSingleModeResponse {
+  string status = 1;  // 'SUCCESS' or 'FAILURE'
+}
+
+message RandomizeSingleAreaCodeRequest {
+  string area_code = 1; // Area code for which to randomize the modes
+  int32 seed = 2;       // Seed for randomization
+}
+
+message RandomizeSingleAreaCodeResponse {
+  string status = 1;  // 'SUCCESS' or 'FAILURE'
+}

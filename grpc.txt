@@ -1,0 +1,52 @@
+> grpcurl -plaintext localhost:50051 multiplayer.MultiplayerService/HealthCheck
+{
+  "status": "server is up and running..."
+}
+
+> grpcurl -plaintext localhost:50051 list
+grpc.reflection.v1.ServerReflection
+grpc.reflection.v1alpha.ServerReflection
+multiplayer.MultiplayerService
+
+
+> grpcurl -plaintext -d '{"area_code": "123"}' localhost:50051 multiplayer.MultiplayerService/GetTopMode
+{
+  "mode": {
+    "name": "Battle Royale",
+    "users": 500
+  }
+}
+
+> grpcurl -plaintext -d '{"area_code": "789"}' localhost:50051 multiplayer.MultiplayerService/GetTopMode
+{
+  "mode": {
+    "name": "Battle Royale",
+    "users": 700
+  }
+}
+
+> grpcurl -plaintext -d '{"area_code": "123", "users": 600}' localhost:50051 multiplayer.MultiplayerService/RandomizeSingleAreaCode
+{
+  "status": "SUCCESS"
+}
+
+> grpcurl -plaintext -d '{"area_code": "123"}' localhost:50051 multiplayer.MultiplayerService/GetTopMode
+{
+  "mode": {
+    "name": "Capture the Flag",
+    "users": 522
+  }
+}
+
+> grpcurl -plaintext -d '{"area_code": "123", "mode_name": "Team Deathmatch", "users": 1000}' localhost:50051 multiplayer.MultiplayerService/UpdateSingleMode
+{
+  "status": "SUCCESS"
+}
+
+> grpcurl -plaintext -d '{"area_code": "123"}' localhost:50051 multiplayer.MultiplayerService/GetTopMode
+{
+  "mode": {
+    "name": "Team Deathmatch",
+    "users": 1000
+  }
+}
