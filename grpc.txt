@@ -25,7 +25,7 @@ multiplayer.MultiplayerService
   }
 }
 
-> grpcurl -plaintext -d '{"area_code": "123", "users": 600}' localhost:50051 multiplayer.MultiplayerService/RandomizeSingleAreaCode
+> grpcurl -plaintext -d '{"area_code": "123", "seed": 600}' localhost:50051 multiplayer.MultiplayerService/RandomizeSingleAreaCode
 {
   "status": "SUCCESS"
 }

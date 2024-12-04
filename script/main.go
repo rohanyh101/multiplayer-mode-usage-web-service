@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	MONGO_URI := fmt.Sprintf("mongodb://%s:%s@%s:%s", config.Env.MONGO_USER, config.Env.MONGO_PASS, config.Env.MONGO_HOST, config.Env.MONGO_PORT)
+	MONGO_URI := fmt.Sprintf("mongodb://%s:%s@localhost:27017", config.Env.MONGO_USER, config.Env.MONGO_PASS)
 	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(MONGO_URI))
 	if err != nil {
 		log.Fatalf("Failed to connect to MongoDB: %v", err)

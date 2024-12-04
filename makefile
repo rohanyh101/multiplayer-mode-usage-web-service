@@ -13,4 +13,4 @@ run:
 test:
 	go test ./...
 
-.PHONY: gen clean run test
+.PHONY: gen clean script run test
